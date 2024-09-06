@@ -1,0 +1,35 @@
+{  
+    "vertexMetas":[
+        {
+            "x": 0,
+            "y": 0,
+            "id":"N1",
+            "label": "N1",
+            "name": "N1",
+            "nodeType": [],
+            "property":{},
+            "icon": "default@@1"
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "id":"N2",
+            "label": "N2",
+            "name": "N2",
+            "nodeType": [],
+            "property":{},
+            "icon": "default@@1"
+        }
+    ],
+    "edgeMetas":[
+        {
+            "srcId":"N1",
+            "dstId":"N2",
+            "id":"N1_N2",
+            "label":"",
+            "name": "E1",
+            "nodeType": [],
+            "property":{}
+        }
+    ]
+}

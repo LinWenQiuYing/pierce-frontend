@@ -1,0 +1,122 @@
+image: 172.16.1.99/transwarp/sophon/builder/fe_ci_runner:latest
+before_script:
+  - source /etc/profile
+  - source /root/.bashrc
+
+  - export COMPONENT="kg-pierce-mvp"
+  - export BRANCH=${CI_COMMIT_REF_NAME}
+  - export DOCKER_REPO_URL="172.16.1.99"
+  - export DOCKER_OPTS="--insecure-registry DOCKER_REPO_URL"
+
+  - export IMAGE="${DOCKER_REPO_URL}/aip/${COMPONENT}:${BRANCH}-${CI_COMMIT_SHA}"
+  - export IMAGE_ARM="${DOCKER_REPO_URL}/aip/arm64-${COMPONENT}:${BRANCH}-${CI_COMMIT_SHA}"
+  - export IMAGE_SNAP="${DOCKER_REPO_URL}/aip/${COMPONENT}:${BRANCH}"
+  - export IMAGE_SNAP_ARM="${DOCKER_REPO_URL}/aip/arm64-${COMPONENT}:${BRANCH}"
+  - export imageTagLatest="${CI_COMMIT_REF_NAME/branch/sophon}"
+  - export GOLD_IMAGE="${DOCKER_REPO_URL}/gold/${COMPONENT}:${BRANCH}"
+  - export GOLD_IMAGE_ARM="${DOCKER_REPO_URL}/gold/arm64-${COMPONENT}:${BRANCH}"
+  - export LATEST_IMAGE="${DOCKER_REPO_URL}/aip/${COMPONENT}:${imageTagLatest}"
+  - export LATEST_IMAGE_ARM="${DOCKER_REPO_URL}/aip/arm64-${COMPONENT}:${imageTagLatest}"
+  - export IMAGE_RELEASE="${DOCKER_REPO_URL}/transwarp/${COMPONENT}:${CI_COMMIT_REF_NAME}"
+  - export IMAGE_RELEASE_ARM="${DOCKER_REPO_URL}/transwarp/arm64-${COMPONENT}:${CI_COMMIT_REF_NAME}"
+
+stages:
+  - build
+  - deploy
+  - release
+
+postcommit_build:
+  stage: build
+  script:
+    - set -e
+    - startdocker.sh &
+    - sleep 90s
+    - DOC_BRANCH=master
+    - export LC_ALL="en_US.UTF-8"
+    - yarn install --frozen-lockfile --ignore-engines
+    - yarn build --${CI_COMMIT_REF_NAME}
+    #      - mkdir build
+    - cp -r dist/ docker/
+
+    - docker run --rm --privileged 172.16.1.99/transwarp/qemu-user-static:4.2.0-2 --reset -p yes
+    - cd docker
+    - docker build -t ${IMAGE} -f Dockerfile .
+    - echo ${IMAGE}
+    - docker push ${IMAGE}
+    - docker tag ${IMAGE} ${IMAGE_SNAP}
+    - docker push ${IMAGE_SNAP}
+    - docker tag ${IMAGE} ${LATEST_IMAGE}
+    - docker push ${LATEST_IMAGE}
+
+    - docker build -t ${IMAGE_ARM} -f Dockerfile_aarch64 .
+    - echo ${IMAGE_ARM}
+    - docker push ${IMAGE_ARM}
+    - docker tag ${IMAGE_ARM} ${IMAGE_SNAP_ARM}
+    - docker push ${IMAGE_SNAP_ARM}
+    - docker tag ${IMAGE_ARM} ${LATEST_IMAGE_ARM}
+    - docker push ${LATEST_IMAGE_ARM}
+
+    - ps aux | grep docker | grep -v "grep" |  awk '{print $2}' | xargs kill -9 || true
+  only:
+    - /^branch-?\d\.\d/
+    - /^sophon-\d\.\d.\d-rc\d$/
+    - /^sophon-\d\.\d.\d-final$/
+    - /master/
+    - /developer/
+  tags:
+    - k8s
+
+gold_build:
+  stage: deploy
+  script:
+    - set -e
+    - startdocker.sh &
+    - sleep 90s
+    - trap "kill -9 $(ps aux | grep dockerd | grep -v grep |  awk '{print $2}')"  ERR #发生异常后用来结束后台docker进程
+
+    - docker pull ${IMAGE}
+    - docker tag ${IMAGE} ${GOLD_IMAGE}
+    - docker push ${GOLD_IMAGE}
+    - ps aux | grep docker | grep -v "grep" |  awk '{print $2}' | xargs kill -9 || true
+  only:
+    - /^sophon-\d\.\d.\d-rc\d$/
+    - /^sophon-\d\.\d.\d-final$/
+  tags:
+    - k8s
+
+# release，新建rc tag之后的步骤，从postcommit拉镜像，然后tag成rc的标准tag，sophon-2.4.0-rc1
+deploy_push_release:
+  stage: release
+  script:
+    - set -e
+    - startdocker.sh &
+    - sleep 10s
+    - trap "kill -9 $(ps aux | grep dockerd | grep -v grep |  awk '{print $2}')"  ERR #发生异常后用来结束后台docker进程
+
+    - export LC_ALL="en_US.UTF-8"
+    - sed -i "4s/cWE6UWExMjM0NTY=/${CI_TOKEN}/" /root/.docker/config.json
+    - docker pull ${IMAGE}
+    - docker tag ${IMAGE} ${IMAGE_RELEASE}
+    - docker push ${IMAGE_RELEASE}
+    - curl --request POST --header "PRIVATE-TOKEN:${GIT_LAB_TOKEN}" "http://172.16.1.41:10080/api/v4/projects/1574/repository/tags?tag_name=${CI_COMMIT_REF_NAME}&ref=branch-${CI_COMMIT_REF_NAME:7:3}"
+    - echo ${IMAGE_RELEASE}
+    - ps aux | grep docker | grep -v "grep" |  awk '{print $2}' | xargs kill -9 || true
+  only:
+    - /^sophon-\d\.\d.\d-rc\d$/
+    - /^sophon-\d\.\d.\d-final$/
+  tags:
+    - k8s
+
+
+deploy_on_127&41&kg:
+  stage: deploy
+  script:
+    - echo ${IMAGE}
+    - JENKINS_URL="http://172.16.1.40:8086"
+    - curl -d "IMAGE=${IMAGE}" -d "COMPONENT=${COMPONENT}" -d "BRANCH=${CI_COMMIT_REF_NAME}" ${JENKINS_URL}/view/sophon_ci/job/deploy_on_kg_cluster/buildWithParameters?token=DOITKG
+  only:
+    - /master/
+    - /developer/
+    - /^branch\d\.\d\/master$/
+  tags:
+    - k8s

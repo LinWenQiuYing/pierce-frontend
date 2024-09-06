@@ -1,0 +1,128 @@
+{
+  "id": "2356707",
+  "name": "pierceMvp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "19736364",
+      "name": "DropLimitIcon",
+      "font_class": "DropLimitIcon",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "19736365",
+      "name": "CommonEntityIcon",
+      "font_class": "CommonEntityIcon",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "19736366",
+      "name": "EquityPledgeIcon",
+      "font_class": "EquityPledgeIcon",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "19736367",
+      "name": "EyeIcon",
+      "font_class": "EyeIcon",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "19736368",
+      "name": "EnterpriseRiskIcon",
+      "font_class": "EnterpriseRiskIcon",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "19736369",
+      "name": "EyeInvisibleIcon",
+      "font_class": "EyeInvisibleIcon",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "19736370",
+      "name": "StatIcon",
+      "font_class": "StatIcon",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "19736371",
+      "name": "JudgmentIcon",
+      "font_class": "JudgmentIcon",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "19736372",
+      "name": "DiscreditIcon",
+      "font_class": "DiscreditIcon",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "19736373",
+      "name": "RiskInsightIcon",
+      "font_class": "RiskInsightIcon",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "19736374",
+      "name": "EventInsightIcon",
+      "font_class": "EventInsightIcon",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "19736375",
+      "name": "PenaltyIcon",
+      "font_class": "PenaltyIcon",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "19736376",
+      "name": "SiftIcon",
+      "font_class": "SiftIcon",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "19736377",
+      "name": "EmptyUploadIcon",
+      "font_class": "EmptyUploadIcon",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "19736378",
+      "name": "EmptyNodataIcon",
+      "font_class": "EmptyNodataIcon",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "19736379",
+      "name": "CategoriesIcon",
+      "font_class": "CategoriesIcon",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "19736380",
+      "name": "CalendarIcon",
+      "font_class": "CalendarIcon",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    }
+  ]
+}

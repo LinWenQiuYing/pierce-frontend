@@ -1,0 +1,99 @@
+// 常用样式规范
+@blue: #1890ff;
+@red: #f5222d;
+@orange: #fa8c16;
+@yellow: #fadb14;
+@green: #52c41a;
+@cyan: #13c2c2;
+@purple: #722ed1;
+@skyBlue: #18c7f2;
+@magenta: #eb2f96;
+
+// 饼图颜色渐变 -1浅色 -2深色
+@PieColor1-1: #63A1FF;
+@PieColor1-2: #0259DA;
+@PieColor2-1: #7BB4FF;
+@PieColor2-2: #026AF7;
+@PieColor3-1: #A4D1FF;
+@PieColor3-2: #2E91FF;
+@PieColor4-1: #ABEFFF;
+@PieColor4-2: #18C7F2;
+@PieColor5-1: #CEF7FF;
+@PieColor5-2: #42E1FB;
+@PieColor6-1: #E4FFFA;
+@PieColor6-2: #3CF4CE;
+@PieColor7-1: #EAFFF7;
+@PieColor7-2: #7FFFE1;
+@PieColor8-1: #E4FFEA;
+@PieColor8-2: #94FFB7;
+@PieColor9-1: #E1FDEE;
+@PieColor9-2: #42FF9A;
+@PieColor10-1: #DCFFED;
+@PieColor10-2: #16EE83;
+@PieColor11-1: #C8FEE5;
+@PieColor11-2: #0BC876;
+@PieColor12-1: #BFFCF4;
+@PieColor12-2: #11A692;
+@PieColor13-1: #C7EDF4;
+@PieColor13-2: #0A9AC7;
+@PieColor14-1: #BCEDFE;
+@PieColor14-2: #0174A8;
+@PieColor15-1: #B9D2FF;
+@PieColor15-2: #0141B3;
+
+// 项目主题文件
+@primaryTextColor: var(--primaryTextColor, rgba(0, 0, 0, 0.85));
+@secondaryTextColor: var(--secondaryTextColor, rgba(0, 0, 0, 0.45));
+@disabledColor: var(--disabledColor, rgba(0, 0, 0, 0.25));
+@borderColor: var(--borderColor, rgba(0, 0, 0, 0.15));
+@dividersColor: var(--dividersColor, rgba(0, 0, 0, 0.06));
+@backgroundColor: var(--backgroundColor, rgba(0, 0, 0, 0.04));
+@tableHeaderColor: var(--tableHeaderColor, rgba(0, 0, 0, 0.02));
+@logoColor: var(--logoColor, #c7c7c7);
+@scrollbarColor: var(--scrollbarColor, #F7F8FA);
+@mainBackgroundColor: var(--mainBackgroundColor, #F7F8FA);
+@layoutHeaderColor: var(--layoutHeaderColor, #22262E);
+@contentColor: var(--contentColor, #fff);
+@activeFontColor: @blue;
+@leftMenuBackgroundColor: var(--leftMenuBackgroundColor, #F2F3F5);
+@primaryButtonBackgroundColor: var(--primaryButtonBackgroundColor, linear-gradient(to right, @blue, @blue));
+@commonButtonColor: var(--commonButtonColor, #fff);
+@paginationBackgroundColor: var(--paginationBackgroundColor, #E8F3FF);
+@paginationColor: var(--paginationColor, @blue);
+@subTitleColor: var(--subTitleColor, #1d2129);
+@subTitlePadding: var(--subTitlePadding, 0);
+@subTitleBackgroundImage: var(--subTitleBackgroundImage, none);
+
+// 导出变量
+:export {
+  name: "less";
+  logoColor: @logoColor;
+  scrollbarColor: @scrollbarColor;
+  mainBackgroundColor: @mainBackgroundColor;
+  layoutHeaderColor: @layoutHeaderColor;
+  contentColor: @contentColor;
+  activeFontColor: @activeFontColor;
+  leftMenuBackgroundColor: @leftMenuBackgroundColor;
+  primaryButtonBackgroundColor: @primaryButtonBackgroundColor;
+  commonButtonColor: @commonButtonColor;
+  paginationBackgroundColor: @paginationBackgroundColor;
+  paginationColor: @paginationColor;
+
+  blue: @blue;
+  red: @red;
+  orange: @orange;
+  yellow: @yellow;
+  green: @green;
+  cyan: @cyan;
+  purple: @purple;
+  skyBlue: @skyBlue;
+  magenta: @magenta;
+
+  primaryTextColor: @primaryTextColor;
+  secondaryTextColor: @secondaryTextColor;
+  disabledColor: @disabledColor;
+  borderColor: @borderColor;
+  dividersColor: @dividersColor;
+  backgroundColor: @backgroundColor;
+  tableHeaderColor: @tableHeaderColor;
+}

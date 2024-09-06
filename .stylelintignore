@@ -1,0 +1,12 @@
+node_modules
+src/static
+src/iconfont/iconfont.js
+src/fonts
+dist
+*.json
+*.csv
+*.js
+*.jsx
+*.ts
+*.tsx
+*.vue

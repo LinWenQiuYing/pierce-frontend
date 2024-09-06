@@ -1,0 +1,275 @@
+/* 全局样式 */
+@font-face {
+  font-family: "PingFang SC Regular";
+  src: url("../../fonts/PingFang SC Regular.woff2");
+  font-display: swap;
+}
+
+/* antd 字体样式 */
+@font-family: "PingFang SC Regular", "Microsoft YaHei", SimSun, arial,
+  DIN Alternate;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  color: @primaryTextColor;
+  font-size: 14px;
+  font-family: @font-family;
+}
+
+h2,
+p {
+  margin: 0;
+  font-family: @font-family;
+}
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: @scrollbarColor;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+// 消息弹窗样式
+.ant-message {
+  .ant-message-notice {
+    .ant-message-notice-content {
+      max-width: 600px;
+      text-align: left;
+    }
+  }
+}
+
+// 页面子标题
+.sub-title {
+  width: 336px;
+  color: @subTitleColor;
+  line-height: 24px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  padding: @subTitlePadding;
+  background-image: @subTitleBackgroundImage;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+}
+
+.content-sub-title {
+  font-size: 16px;
+  font-weight: 600;
+  user-select: none;
+  padding-left: 10px;
+  position: relative;
+  margin-bottom: 16px;
+
+  &::before {
+    content: "";
+    left: 0;
+    top: 4px;
+    width: 4px;
+    height: 16px;
+    background: @activeFontColor;
+    position: absolute;
+  }
+}
+
+// primaryButton样式
+.ant-btn {
+  background-color: @commonButtonColor;
+  color: @primaryTextColor;
+  border-radius: 2px;
+
+  &:not(.ant-btn-primary):not(.ant-btn-dashed) {
+    border: 1px solid @borderColor;
+  }
+
+  &.ant-btn-primary:not([disabled]) {
+    background-image: @primaryButtonBackgroundColor !important;
+    background-color: transparent !important;
+    color: #fff;
+  }
+}
+
+// input && select + input-placeholder样式
+// .ant-select,
+// .ant-select-selection,
+// .ant-input {
+// }
+
+// input::-webkit-input-placeholder {
+//   /* WebKit browsers*/
+//   color: var(--inputPlaceholderColor) !important;
+//   font-size: 14px;
+// }
+// input:-moz-input-placeholder {
+//   /* Mozilla Firefox 4 to 18*/
+//   color: var(--inputPlaceholderColor) !important;
+//   font-size: 14px;
+// }
+// input::-moz-placeholder {
+//   /* Mozilla Firefox 19+*/
+//   color: var(--inputPlaceholderColor) !important;
+//   font-size: 14px;
+// }
+
+// input:-ms-input-placeholder {
+//   /* Internet Explorer 10+*/
+//   color: var(--inputPlaceholderColor) !important;
+//   font-size: 14px;
+// }
+
+.ant-pagination-item {
+  line-height: 24px !important;
+
+  &:hover {
+    border-color: @activeFontColor !important ;
+    a {
+      color: @activeFontColor;
+    }
+  }
+
+  &.ant-pagination-item-active {
+    background: @paginationBackgroundColor;
+    border: none;
+
+    a {
+      color: @paginationColor;
+    }
+  }
+}
+
+.ant-modal-title {
+  font-weight: 600;
+  color: @primaryTextColor;
+}
+
+// 确认弹窗样式
+.ant-modal-confirm {
+  .ant-modal-wrap {
+    .ant-modal {
+      .ant-modal-content {
+        .ant-modal-body {
+          .ant-modal-confirm-body-wrapper {
+            .ant-modal-confirm-body {
+              display: flex;
+              flex-wrap: wrap;
+
+              .confirm-icon {
+                width: 16px;
+                height: 16px;
+                margin-right: 8px;
+                margin-top: 4px;
+              }
+
+              .ant-modal-confirm-title {
+                width: calc(100% - 24px);
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 24px;
+                word-break: break-all;
+                white-space: break-spaces;
+              }
+
+              .ant-modal-confirm-content {
+                width: 100%;
+                padding-left: 24px;
+              }
+            }
+
+            .ant-modal-confirm-btns {
+              margin-top: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.more-actions {
+  .ant-popover-content {
+    .ant-popover-inner {
+      .ant-popover-inner-content {
+        width: 80px;
+        padding: 5px 0;
+        text-align: center;
+
+        p {
+          padding: 5px 0;
+          cursor: pointer;
+          color: @activeFontColor;
+
+          &.disabled {
+            cursor: not-allowed;
+            color: @disabledColor;
+          }
+
+          &:not(.disabled):hover {
+            background: #e6f7ff;
+          }
+        }
+      }
+    }
+  }
+}
+
+#app {
+  height: 100vh;
+  width: 100%;
+
+  .mvp-card {
+    border-radius: 5px;
+    overflow: hidden;
+    h2,
+    .mvp-card-content {
+      background-color: @contentColor;
+    }
+    h2 {
+      margin: 0;
+      height: 48px;
+      font-size: 16px;
+      overflow: hidden;
+      line-height: 36px;
+      padding: 5px 20px;
+      color: @primaryTextColor;
+      border-bottom: 1px solid @dividersColor;
+    }
+    .mvp-card-content {
+      padding: 10px 16px;
+      height: calc(100% - 49px);
+      margin-top: 1px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .content-title {
+    user-select: none;
+    padding-left: 10px;
+    position: relative;
+    margin-bottom: 16px;
+
+    &::before {
+      content: "";
+      left: 0;
+      top: 2px;
+      width: 4px;
+      height: 16px;
+      background: @activeFontColor;
+      position: absolute;
+    }
+  }
+}
